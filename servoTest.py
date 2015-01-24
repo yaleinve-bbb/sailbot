@@ -17,7 +17,7 @@ def rotate(l,n):
 while True:
 	ADC.read("P9_40")
 	input = ADC.read("AIN1")
-	print "Input: %f" %(input)
+	# print "Input: %f" %(input)
 	output_end = 12
 	output_start = 3
 	input_end = .20
@@ -27,4 +27,5 @@ while True:
 	output = reduce(lambda x, y: x + y, running_avg) / len(running_avg)
 	running_avg = rotate(running_avg,-1)
 	PWM.set_duty_cycle("P9_14", output)
-	time.sleep(.1)
+	print "%.2f" % float(sum(running_avg)/len(running_avg))
+        time.sleep(0.1)
